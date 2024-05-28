@@ -1,1 +1,3 @@
-a = 76
+import telebot
+
+bot = telebot.TeleBot("")
