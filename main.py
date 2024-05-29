@@ -5,7 +5,19 @@ bot = telebot.TeleBot('7463175667:AAGrh1Qy_VmeGc-xCcgIFSx4_HaoxubJf0o') # ток
 
 @bot.message_handler(commands = ['start'])
 def start(message): # Метод который отвечает на определенное сообщение пользователя
-    bot.send_message(message.chat.id, "<b>Привет пользователь!</b>", parse_mode='html') # Что оправляем(в какой чат отсылаем, само сообщение, режим в котором отправляем текст)
+    mess = f'Привет, <b>{message.from_user.first_name}</b>' # Создал переменную которая берет никнейм пользователя и привествует его
+    bot.send_message(message.chat.id, mess, parse_mode='html') # Что оправляем(в какой чат отсылаем, само сообщение, режим в котором отправляем текст)
+
+
+@bot.message_handler()
+def get_user_text(message): # Метод который отвечает на любое сообщение пользователя(не команду)
+    if message.text == "hello":
+        bot.send_message(message.chat.id, "И тебе привет", parse_mode='html')
+    elif message.text == "id":
+        bot.send_message(message.chat.id, f"Твой ID = {message.from_user.id}", parse_mode='html')
+    else:
+        bot.send_message(message.chat.id, "Я тебя не понимаю", parse_mode='html')
+
 
 
 
